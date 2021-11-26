@@ -118,6 +118,48 @@ function validateInput(input) {
       "Ce champ est requis. Veuillez entrer une date."
     );
     error = formDataElement.dataset.error;
+  } else if (
+    input.dataset.date !== undefined &&
+    input.dataset.required !== undefined &&
+    value !== ""
+  ) {
+    // if the value is not empty, check if age < 18
+    let age = validateAge(value);
+    if (age < 18) {
+      formDataElement.setAttribute(
+        "data-error",
+        "Date incorrecte. Vous devez avoir au moins 18 ans pour continuer."
+      );
+      error = formDataElement.dataset.error;
+    }
+  }
+
+  // Function to check that age > 18
+  function validateAge(dateOfBirth) {
+    // [1] new Date(dateString)
+    const birthday = new Date(dateOfBirth); // transform birthday in date-object
+
+    function calculateAge(birthday) {
+      // diff = number of ms since 1970 (to now) - number of ms since 1970 (to birthday)
+      // diff = age in ms
+      const diff = Date.now() - birthday.getTime();
+      console.log(diff);
+
+      // [2] new Date(value); -> value = date based on ms since 1970
+      // = do as if the person was born in 1970
+      // so calculate the date of birth based on the age in ms with 1970 as start ref
+      const ageDate = new Date(diff);
+
+      // Give the year based on the complete date of birth (ageDate)
+      const yearOfBirth = ageDate.getUTCFullYear();
+
+      // age = year of birth (calculated from 1970) - 1970. Ex : age = 1989 - 1970 = 19
+      // return absolute value
+      let age;
+      return (age = Math.abs(yearOfBirth - 1970));
+    }
+
+    return calculateAge(birthday);
   }
 
   // Check if input has data-number and data-required attributes and if the value is empty
