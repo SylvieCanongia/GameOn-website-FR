@@ -83,8 +83,6 @@ function validateInput(input) {
     input.dataset.minlength !== undefined &&
     value.length < +input.dataset.minlength
   ) {
-    // Set data-error-visible attribute to true for applying error styles
-    // formDataElement.setAttribute("data-error-visible", "true");
     // Set an error message to the data-error attribute for display to the user
     formDataElement.setAttribute(
       "data-error",
@@ -95,7 +93,6 @@ function validateInput(input) {
 
   // Check if input has data-email attribute and if email is not valid with validateEmail function
   if (input.dataset.email !== undefined && !validateEmail(value)) {
-    // formDataElement.setAttribute("data-error-visible", "true");
     formDataElement.setAttribute(
       "data-error",
       "Ce champ est requis. Veuillez entrer une adresse email valide."
@@ -116,13 +113,11 @@ function validateInput(input) {
     input.dataset.required !== undefined &&
     value === ""
   ) {
-    // formDataElement.setAttribute("data-error-visible", "true");
     formDataElement.setAttribute(
       "data-error",
       "Ce champ est requis. Veuillez entrer une date."
     );
     error = formDataElement.dataset.error;
-    console.log(error);
   }
 
   // Check if input has data-number and data-required attributes and if the value is empty
@@ -131,7 +126,6 @@ function validateInput(input) {
     input.dataset.required !== undefined &&
     value === ""
   ) {
-    // formDataElement.setAttribute("data-error-visible", "true");
     formDataElement.setAttribute(
       "data-error",
       "Ce champ est requis. Veuillez entrer un nombre entre 0 et 99."
@@ -155,7 +149,6 @@ function validateInput(input) {
     });
 
     if (!isChecked) {
-      // formDataElement.setAttribute("data-error-visible", "true");
       formDataElement.setAttribute(
         "data-error",
         "Ce champ est requis. Veuillez sélectionner une réponse."
@@ -170,7 +163,6 @@ function validateInput(input) {
     input.dataset.required !== undefined &&
     !input.checked
   ) {
-    // formDataElement.setAttribute("data-error-visible", "true");
     formDataElement.setAttribute(
       "data-error",
       "Veuillez accepter les conditions générales pour continuer."
@@ -187,9 +179,6 @@ function validateInput(input) {
   } else {
     formDataElement.setAttribute("data-error-visible", "true");
   }
-
-  console.log("Soumission du form, variable error :");
-  console.log(error);
 
   return error;
 }
