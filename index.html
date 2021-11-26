@@ -25,11 +25,11 @@
 
         <div class="header-navbar">
           <a href="#"><span>Accueil</span></a>
-          <a href="#"><span>Détails de l'évènement</span></a>
+          <a href="#"><span>Détails de l'événement</span></a>
           <a href="#"><span>À propos</span></a>
           <a href="#"><span>Contact</span></a>
           <a href="#"><span>Événements passés</span></a>
-          <a href="javascript:void(0);" class="icon" onclick="editNav()">
+          <a href="javascript:void(0);" class="icon">
             <i class="fa fa-bars"></i>
           </a>
         </div>
@@ -43,7 +43,7 @@
               de jeux vidéos
             </h1>
             <p class="hero-text">
-              Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux
+              Vous aimez jouer ? Notre prochain événement gaming est ouvert aux
               réservations... Places limitées !
             </p>
             <button class="btn-signup modal-btn">Je m'inscris</button>
@@ -58,51 +58,82 @@
           <div class="content">
             <span class="close"></span>
             <div class="modal-body">
-              <form
-                name="reserve"
-                action="index.html"
-                method="get"
-                onsubmit="return validate();"
-              >
-                <div class="formData">
-                  <label>Prénom</label>
+              <form name="reserve" method="get" data-form>
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible="false"
+                >
+                  <label for="first">Prénom</label>
                   <input
                     class="text-control"
                     type="text"
                     id="first"
                     name="first"
-                    minlength="2"
+                    data-minlength="2"
+                    data-required
+                    data-validate
                   />
                 </div>
-                <div class="formData">
-                  <label>Nom</label>
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible="false"
+                >
+                  <label for="last">Nom</label>
                   <input
                     class="text-control"
                     type="text"
                     id="last"
                     name="last"
+                    data-minlength="2"
+                    data-required
+                    data-validate
                   />
                 </div>
-                <div class="formData">
-                  <label>E-mail</label>
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible="false"
+                >
+                  <label for="email">E-mail</label>
                   <input
                     class="text-control"
                     type="email"
                     id="email"
                     name="email"
+                    data-email
+                    data-required
+                    data-validate
                   />
                 </div>
-                <div class="formData">
-                  <label>Date de naissance</label>
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible="false"
+                >
+                  <label for="birthdate">Date de naissance</label>
                   <input
                     class="text-control"
                     type="date"
                     id="birthdate"
                     name="birthdate"
+                    data-date
+                    data-required
+                    data-validate
                   />
                 </div>
-                <div class="formData">
-                  <label>
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible="false"
+                >
+                  <label for="quantity">
                     À combien de tournois GameOn avez-vous déjà participé ?
                   </label>
                   <input
@@ -112,16 +143,25 @@
                     name="quantity"
                     min="0"
                     max="99"
+                    data-number
+                    data-required
+                    data-validate
                   />
                 </div>
                 <p class="checkbox-title">Quelles villes ?</p>
-                <div class="formData">
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible="false"
+                >
                   <input
                     class="checkbox-input"
                     type="radio"
                     id="location1"
                     name="location"
                     value="New York"
+                    data-validate
                   />
                   <label class="checkbox-label" for="location1">
                     <span class="checkbox-icon"></span>
@@ -133,6 +173,7 @@
                     id="location2"
                     name="location"
                     value="San Francisco"
+                    data-validate
                   />
                   <label class="checkbox-label" for="location2">
                     <span class="checkbox-icon"></span>
@@ -144,6 +185,7 @@
                     id="location3"
                     name="location"
                     value="Seattle"
+                    data-validate
                   />
                   <label class="checkbox-label" for="location3">
                     <span class="checkbox-icon"></span>
@@ -155,6 +197,7 @@
                     id="location4"
                     name="location"
                     value="Chicago"
+                    data-validate
                   />
                   <label class="checkbox-label" for="location4">
                     <span class="checkbox-icon"></span>
@@ -166,6 +209,7 @@
                     id="location5"
                     name="location"
                     value="Boston"
+                    data-validate
                   />
                   <label class="checkbox-label" for="location5">
                     <span class="checkbox-icon"></span>
@@ -177,6 +221,7 @@
                     id="location6"
                     name="location"
                     value="Portland"
+                    data-validate
                   />
                   <label class="checkbox-label" for="location6">
                     <span class="checkbox-icon"></span>
@@ -184,12 +229,19 @@
                   </label>
                 </div>
 
-                <div class="formData">
+                <div
+                  class="formData"
+                  data-formData
+                  data-error
+                  data-error-visible
+                >
                   <input
                     class="checkbox-input"
                     type="checkbox"
                     id="checkbox1"
                     checked
+                    data-validate
+                    data-required
                   />
                   <label class="checkbox2-label" for="checkbox1">
                     <span class="checkbox-icon"></span>
@@ -199,18 +251,14 @@
                     class="checkbox-input"
                     type="checkbox"
                     id="checkbox2"
-                    required
+                    name="terms"
                   />
                   <label class="checkbox2-label" for="checkbox2">
                     <span class="checkbox-icon"></span>
                     Je souhaite être prévenu des prochains événements.
                   </label>
                 </div>
-                <input
-                  class="btn-submit"
-                  type="submit"
-                  value="C'est parti"
-                />
+                <input class="btn-submit" type="submit" value="C'est parti" />
               </form>
             </div>
           </div>
