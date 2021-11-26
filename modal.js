@@ -14,6 +14,9 @@ const formData = document.querySelectorAll(".formData");
 const closeModalElement = document.querySelector(".close");
 // get the form element
 const forms = document.querySelectorAll("form[data-form]");
+const formElement = document.querySelector("form[data-form]");
+const modalBodyElement = document.querySelector(".modal-body");
+
 
 // =================================
 // === Modal opening and closing ===
@@ -143,7 +146,6 @@ function validateInput(input) {
       // diff = number of ms since 1970 (to now) - number of ms since 1970 (to birthday)
       // diff = age in ms
       const diff = Date.now() - birthday.getTime();
-      console.log(diff);
 
       // [2] new Date(value); -> value = date based on ms since 1970
       // = do as if the person was born in 1970
@@ -180,7 +182,7 @@ function validateInput(input) {
     // Get all radio inputs in the group
     const radios = formDataElement.querySelectorAll('input[type="radio"]');
     let isChecked = false;
-    let errorMsg = "";
+    // let errorMsg = "";
 
     // Loop through radios and check if any radio is checked and if is checked,
     // set isChecked to true
@@ -241,5 +243,10 @@ function submitForm(inputs, event) {
   // Check if errors array is empty and only in that case, form is submited
   if (errors.length === 0) {
     console.log("Le formulaire peut être soumis...");
+    // reset the form
+    formElement.reset();
+
+    // hide the form content
+    formElement.style.display = "none";
   }
 }
