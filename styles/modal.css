@@ -5,7 +5,7 @@
 
   /* Colors */
   --color-primary: #232323;
-  --color-secondary:  #fe142f;
+  --color-secondary: #fe142f;
   --color-tertiary: #279e7a;
   --color-bg-checkbox: #c4c4c4;
   --color-error: #e54858;
@@ -77,6 +77,16 @@ body {
 .modal-body {
   padding: 15px 8%;
   margin: 8px auto;
+}
+
+/* confirmation modal after form validation */
+.modal-confirm {
+  min-height: min(700px, 80vh);
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  display: grid;
+  align-items: end;
 }
 
 /* Modal form content */

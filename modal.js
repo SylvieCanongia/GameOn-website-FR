@@ -11,22 +11,24 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeModalElement = document.querySelector(".close");
+const closeModalCrossElement = document.querySelector(".close");
 // get the form element
 const forms = document.querySelectorAll("form[data-form]");
 const formElement = document.querySelector("form[data-form]");
 const modalBodyElement = document.querySelector(".modal-body");
 
-
-// =================================
-// === Modal opening and closing ===
-// =================================
+// ==============================================
+// === Modal subscription opening and closing ===
+// ==============================================
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
+  // display the form content in case
+  // it is not the first time the button is clicked
+  formElement.style.display = "block";
   modalbg.style.display = "block";
 }
 
@@ -36,7 +38,7 @@ function launchModal() {
 const closeModal = () => (modalbg.style.display = "none");
 
 // listen the event click on the cross
-closeModalElement.addEventListener("click", closeModal);
+closeModalCrossElement.addEventListener("click", closeModal);
 
 // =======================
 // === Form validation ===
@@ -60,11 +62,19 @@ if (forms.length > 0) {
   }
 }
 
+// ===================
+// === CHECK INPUT ===
+// ===================
+
 // Check input
 function checkInput() {
   const input = this;
   validateInput(input);
 }
+
+// ======================
+// === VALIDATE INPUT ===
+// ======================
 
 // Validate input
 function validateInput(input) {
@@ -227,6 +237,10 @@ function validateInput(input) {
   return error;
 }
 
+// ============================
+// ======== SUBMITFORM ========
+// ============================
+
 // submit form on submit button click
 // all inputs are passed as argument with bind to loop through inputs
 // and call validateInput on each input element
@@ -240,13 +254,63 @@ function submitForm(inputs, event) {
       errors.push(error);
     }
   });
+
   // Check if errors array is empty and only in that case, form is submited
   if (errors.length === 0) {
-    console.log("Le formulaire peut être soumis...");
     // reset the form
     formElement.reset();
 
-    // hide the form content
-    formElement.style.display = "none";
+    confirmSubmission();
   }
+}
+
+// =========================
+// === CONFIRM SUBMISSION ===
+// ==========================
+
+function confirmSubmission() {
+  // hide the form content
+  formElement.style.display = "none";
+
+  // Display a message after form validation success
+  // 1. Create a div element
+  let divElement = document.createElement("div");
+  divElement.className = "modal-confirm";
+
+  // 2. Put a p element into the div element
+  let pElement = document.createElement("p");
+  pElement.textContent = "Merci d'avoir validé votre inscription";
+
+  divElement.appendChild(pElement);
+
+  // Add a button for closing the confirmation modal
+  let buttonElement = document.createElement("input");
+  buttonElement.classList.add("btn-submit", "btn-close-modal");
+  buttonElement.setAttribute("type", "button");
+  buttonElement.setAttribute("value", "Fermer");
+
+  divElement.appendChild(buttonElement);
+
+  // Put the div element into the modal body
+  modalBodyElement.appendChild(divElement);
+
+  closeModalCrossElement.addEventListener("click", closeConfirmModal);
+
+  const btnCloseModalElement = document.querySelector(".btn-close-modal");
+  btnCloseModalElement.addEventListener("click", closeConfirmModal);
+}
+
+// ==================================
+// === Modal confirmation closing ===
+// ==================================
+
+function closeConfirmModal() {
+  // Select and remove the p Element
+  modalBodyElement.querySelector("p").remove();
+  // Select and remove the button Element
+  modalBodyElement.querySelector(".btn-close-modal").remove();
+  // Select and remove the div Element
+  modalBodyElement.querySelector(".modal-confirm").remove();
+  // close the modal
+  modalbg.style.display = "none";
 }
