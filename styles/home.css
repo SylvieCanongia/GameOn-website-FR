@@ -95,7 +95,7 @@ main {
   grid-column: 1 / span 5;
   background: #232323;
   color: #fff;
-  position: relative;
+  /* position: relative; */
   text-align: left;
 }
 
