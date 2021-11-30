@@ -95,7 +95,7 @@ label {
   font-size: 0.9rem;
   font-weight: normal;
   display: inline-block;
-  margin-block: 11px;
+  margin-block-end: 11px;
 }
 
 input {
@@ -110,19 +110,18 @@ input {
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
-  height: 48px;
+  height: 60px;
 }
 
 /* Error messages */
 
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: var(--color-error);
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
   line-height: 0.9;
   opacity: 0;
   transition: 0.3s;
@@ -279,5 +278,11 @@ input {
 
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .text-control {
+    height: 48px;
   }
 }
