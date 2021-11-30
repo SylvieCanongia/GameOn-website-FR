@@ -1,31 +1,3 @@
-:root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: var(--font-default);
-  --modal-duration: 0.8s;
-
-  /* Colors */
-  --color-primary: #232323;
-  --color-secondary: #fe142f;
-  --color-tertiary: #279e7a;
-  --color-bg-checkbox: #c4c4c4;
-  --color-error: #e54858;
-  --color-white: #fff;
-  --color-btn-hover: #3876ac;
-  --color-input-border: #ccc;
-  --color-bg-viewport: rgba(26, 39, 156, 0.4);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: 100%;
-}
-
 /* ====================== */
 /* ===== MODAL FORM ===== */
 /* ====================== */
