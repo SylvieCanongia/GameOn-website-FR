@@ -1,13 +1,5 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
 // DOM Elements
+const myTopNav = document.getElementById("myTopNav");
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
@@ -16,6 +8,12 @@ const closeModalCrossElement = document.querySelector(".close");
 const forms = document.querySelectorAll("form[data-form]");
 const formElement = document.querySelector("form[data-form]");
 const modalBodyElement = document.querySelector(".modal-body");
+
+myTopNav.addEventListener("click", editNav);
+
+function editNav() {
+  myTopNav.classList.toggle("responsive");
+}
 
 // ==============================================
 // === Modal subscription opening and closing ===
@@ -58,6 +56,7 @@ if (forms.length > 0) {
     });
 
     // Listen the form submit event and submit the form
+    // bind allow to pass all inputs as argument
     form.addEventListener("submit", submitForm.bind(form, inputs));
   }
 }
@@ -81,7 +80,7 @@ function validateInput(input) {
   // get the value and formData element for assigning error message
   // (via CSS pseudo-elements)
   const value = input.value;
-  let formDataElement = input.closest("[data-formData]");
+  const formDataElement = input.closest("[data-formData]");
   // Declare error variable for displaying error messages and assign null by default
   let error = null;
 
@@ -115,7 +114,7 @@ function validateInput(input) {
 
   // Validate email using a regex
   function validateEmail(email) {
-    var regexMail =
+    const regexMail =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regexMail.test(String(email).toLowerCase());
   }
@@ -137,7 +136,7 @@ function validateInput(input) {
     value !== ""
   ) {
     // if the value is not empty, check if age < 18
-    let age = validateAge(value);
+    const age = validateAge(value);
     if (age < 18) {
       formDataElement.setAttribute(
         "data-error",
@@ -274,17 +273,17 @@ function confirmSubmission() {
 
   // Display a message after form validation success
   // 1. Create a div element
-  let divElement = document.createElement("div");
+  const divElement = document.createElement("div");
   divElement.className = "modal-confirm";
 
   // 2. Put a p element into the div element
-  let pElement = document.createElement("p");
+  const pElement = document.createElement("p");
   pElement.textContent = "Merci d'avoir validé votre inscription";
 
   divElement.appendChild(pElement);
 
   // Add a button for closing the confirmation modal
-  let buttonElement = document.createElement("input");
+  const buttonElement = document.createElement("input");
   buttonElement.classList.add("btn-submit", "btn-close-modal");
   buttonElement.setAttribute("type", "button");
   buttonElement.setAttribute("value", "Fermer");
