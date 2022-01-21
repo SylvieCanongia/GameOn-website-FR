@@ -9,6 +9,10 @@ const forms = document.querySelectorAll("form[data-form]");
 const formElement = document.querySelector("form[data-form]");
 const modalBodyElement = document.querySelector(".modal-body");
 
+// Managing of the errors
+let error;
+let errors;
+
 myTopNav.addEventListener("click", editNav);
 
 function editNav() {
@@ -33,7 +37,16 @@ function launchModal() {
 // === Close the modal by click on the cross ===
 
 // function to close the modal
-const closeModal = () => (modalbg.style.display = "none");
+const closeModal = () => {
+  // Removes the error messages
+  formData.forEach(formD => {
+    formD.setAttribute("data-error-visible", "false");
+    formD.setAttribute("data-error", "");
+  });
+  error = "";
+  // Close the modal
+  modalbg.style.display = "none";
+}
 
 // listen the event click on the cross
 closeModalCrossElement.addEventListener("click", closeModal);
@@ -50,10 +63,10 @@ if (forms.length > 0) {
     const inputs = form.querySelectorAll("[data-validate]");
 
     // Loops trough inputs to check them
-    inputs.forEach((input) => {
-      // Add input event to all inputs to check them with checkInput function
-      input.addEventListener("submit", checkInput);
-    });
+    // inputs.forEach((input) => {
+    //   // Add input event to all inputs to check them with checkInput function
+    //   input.addEventListener("submit", checkInput);
+    // });
 
     // Listen the form submit event and submit the form
     // bind allow to pass all inputs as argument
@@ -66,10 +79,10 @@ if (forms.length > 0) {
 // ===================
 
 // Check input
-function checkInput() {
-  const input = this;
-  validateInput(input);
-}
+// function checkInput() {
+//   const input = this;
+//   validateInput(input);
+// }
 
 // ======================
 // === VALIDATE INPUT ===
@@ -82,7 +95,7 @@ function validateInput(input) {
   const value = input.value;
   const formDataElement = input.closest("[data-formData]");
   // Declare error variable for displaying error messages and assign null by default
-  let error = null;
+  error = null;
 
   // Check if : -> if the input is not radio or checkbox
   // -> and input has data-required attribute
@@ -245,7 +258,7 @@ function validateInput(input) {
 // and call validateInput on each input element
 function submitForm(inputs, event) {
   event.preventDefault();
-  const errors = [];
+  errors = [];
 
   inputs.forEach((input) => {
     const error = validateInput(input);
@@ -305,6 +318,7 @@ function confirmSubmission() {
 
 function closeConfirmModal() {
   // Select and remove the p Element
+  console.log(modalBodyElement)
   modalBodyElement.querySelector("p").remove();
   // Select and remove the button Element
   modalBodyElement.querySelector(".btn-close-modal").remove();
