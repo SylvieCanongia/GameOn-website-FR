@@ -26,7 +26,9 @@ function editNav() {
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// launch modal form
+/**
+ * Launch modal form
+ */
 function launchModal() {
   // display the form content in case
   // it is not the first time the button is clicked
@@ -36,7 +38,9 @@ function launchModal() {
 
 // === Close the modal by click on the cross ===
 
-// function to close the modal
+/**
+ * Close the modal
+ */
 const closeModal = () => {
   // Removes the error messages
   formData.forEach(formD => {
@@ -62,39 +66,29 @@ if (forms.length > 0) {
     // Get all inputs that have to be validated (have data-validate attribute)
     const inputs = form.querySelectorAll("[data-validate]");
 
-    // Loops trough inputs to check them
-    // inputs.forEach((input) => {
-    //   // Add input event to all inputs to check them with checkInput function
-    //   input.addEventListener("submit", checkInput);
-    // });
-
     // Listen the form submit event and submit the form
     // bind allow to pass all inputs as argument
     form.addEventListener("submit", submitForm.bind(form, inputs));
   }
 }
 
-// ===================
-// === CHECK INPUT ===
-// ===================
-
-// Check input
-// function checkInput() {
-//   const input = this;
-//   validateInput(input);
-// }
-
 // ======================
 // === VALIDATE INPUT ===
 // ======================
 
-// Validate input
+/**
+ * Validate each input of the form
+ * @param {HTMLElement} input 
+ * @returns If there are errors, displays a message under the concerned fields,
+ * else return no error
+ */
 function validateInput(input) {
+
   // get the value and formData element for assigning error message
   // (via CSS pseudo-elements)
   const value = input.value;
   const formDataElement = input.closest("[data-formData]");
-  // Declare error variable for displaying error messages and assign null by default
+  // Error variable for displaying error messages and assign null by default
   error = null;
 
   // Check if : -> if the input is not radio or checkbox
@@ -125,7 +119,11 @@ function validateInput(input) {
     error = formDataElement.dataset.error;
   }
 
-  // Validate email using a regex
+  /**
+   * Validate email using a regex
+   * @param {String} email 
+   * @returns Boolean
+   */
   function validateEmail(email) {
     const regexMail =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -158,12 +156,21 @@ function validateInput(input) {
       error = formDataElement.dataset.error;
     }
   }
-
-  // Function to check that age > 18
+ 
+  /**
+   * Check if age > 18
+   * @param {Date} dateOfBirth 
+   * @returns Function
+   */
   function validateAge(dateOfBirth) {
     // [1] new Date(dateString)
     const birthday = new Date(dateOfBirth); // transform birthday in date-object
 
+    /**
+     * Calculate age from a date (date object)
+     * @param {Date} birthday 
+     * @returns Age of the user
+     */
     function calculateAge(birthday) {
       // diff = number of ms since 1970 (to now) - number of ms since 1970 (to birthday)
       // diff = age in ms
@@ -182,7 +189,6 @@ function validateInput(input) {
       let age;
       return (age = Math.abs(yearOfBirth - 1970));
     }
-
     return calculateAge(birthday);
   }
 
@@ -204,7 +210,6 @@ function validateInput(input) {
     // Get all radio inputs in the group
     const radios = formDataElement.querySelectorAll('input[type="radio"]');
     let isChecked = false;
-    // let errorMsg = "";
 
     // Loop through radios and check if any radio is checked and if is checked,
     // set isChecked to true
@@ -245,7 +250,6 @@ function validateInput(input) {
   } else {
     formDataElement.setAttribute("data-error-visible", "true");
   }
-
   return error;
 }
 
@@ -253,9 +257,13 @@ function validateInput(input) {
 // ======== SUBMITFORM ========
 // ============================
 
-// submit form on submit button click
 // all inputs are passed as argument with bind to loop through inputs
-// and call validateInput on each input element
+
+/**
+   * Submits the form on click on the submit button and calls validateInput() on each input element
+   * @param {NodeList} inputs List of all the inputs of the form by id/class (ex: input#first.text-control)
+   * @param {MouseEvent} event
+   */
 function submitForm(inputs, event) {
   event.preventDefault();
   errors = [];
@@ -280,6 +288,9 @@ function submitForm(inputs, event) {
 // === CONFIRM SUBMISSION ===
 // ==========================
 
+/**
+ * Displays the confirmation message after submitting the form
+ */
 function confirmSubmission() {
   // hide the form content
   formElement.style.display = "none";
@@ -316,14 +327,20 @@ function confirmSubmission() {
 // === Modal confirmation closing ===
 // ==================================
 
+/**
+ * Close the confirmation modal
+ */
 function closeConfirmModal() {
   // Select and remove the p Element
-  console.log(modalBodyElement)
   modalBodyElement.querySelector("p").remove();
-  // Select and remove the button Element
-  modalBodyElement.querySelector(".btn-close-modal").remove();
-  // Select and remove the div Element
-  modalBodyElement.querySelector(".modal-confirm").remove();
-  // close the modal
-  modalbg.style.display = "none";
+  
+  // setTimeout avoid deletion before the paragraph just before
+  setTimeout(function() {
+    // Remove the button Element
+    modalBodyElement.querySelector(".btn-close-modal").remove();
+    // Remove the div Element
+    modalBodyElement.querySelector(".modal-confirm").remove();
+    // close the modal
+    modalbg.style.display = "none";
+  }, 200);
 }

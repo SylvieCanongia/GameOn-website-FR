@@ -73,8 +73,12 @@ body {
 
 .topNav a:hover {
   background-color: #ff0000;
-  color: #ffffff;
-  border-radius: 15px;
+  color: hsl(0, 0%, 100%);
+  border-radius: 7px;
+}
+
+.topNav a:hover span {
+  border-bottom: 2px solid hsla(0, 0%, 100%, 0.5);
 }
 
 .topNav a.active {
@@ -111,7 +115,6 @@ main {
   grid-column: 1 / span 5;
   background: #232323;
   color: #fff;
-  /* position: relative; */
   text-align: left;
 }
 
