@@ -331,16 +331,15 @@ function confirmSubmission() {
  * Close the confirmation modal
  */
 function closeConfirmModal() {
+  if(modalBodyElement.querySelector("p")) {
   // Select and remove the p Element
   modalBodyElement.querySelector("p").remove();
   
-  // setTimeout avoid deletion before the paragraph just before
-  setTimeout(function() {
     // Remove the button Element
     modalBodyElement.querySelector(".btn-close-modal").remove();
     // Remove the div Element
     modalBodyElement.querySelector(".modal-confirm").remove();
     // close the modal
     modalbg.style.display = "none";
-  }, 200);
+}
 }
