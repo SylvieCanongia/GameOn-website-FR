@@ -341,5 +341,5 @@ function closeConfirmModal() {
     modalBodyElement.querySelector(".modal-confirm").remove();
     // close the modal
     modalbg.style.display = "none";
-}
+  }
 }
