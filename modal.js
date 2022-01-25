@@ -91,6 +91,7 @@ function validateInput(input) {
   // Error variable for displaying error messages and assign null by default
   error = null;
 
+  // TEXT FIELDS -> MIN LENGTH = 2
   // Check if : -> if the input is not radio or checkbox
   // -> and input has data-required attribute
   //  -> and the value is empty and the value has a required minlength
@@ -100,7 +101,7 @@ function validateInput(input) {
     input.type !== "checkbox" &&
     input.dataset.required !== undefined &&
     input.dataset.minlength !== undefined &&
-    value.length < +input.dataset.minlength
+    value.length < input.dataset.minlength
   ) {
     // Set an error message to the data-error attribute for display to the user
     formDataElement.setAttribute(
@@ -110,6 +111,7 @@ function validateInput(input) {
     error = formDataElement.dataset.error;
   }
 
+  // E MAIL FIELD
   // Check if input has data-email attribute and if email is not valid with validateEmail function
   if (input.dataset.email !== undefined && !validateEmail(value)) {
     formDataElement.setAttribute(
@@ -130,6 +132,7 @@ function validateInput(input) {
     return regexMail.test(String(email).toLowerCase());
   }
 
+  // DATE OF BIRTH - AGE >= 18
   // Check if input has data-date and data-required attributes and if the value is empty
   if (
     input.dataset.date !== undefined &&
@@ -192,6 +195,7 @@ function validateInput(input) {
     return calculateAge(birthday);
   }
 
+  // NUMBER OF TOURNAMENTS (0 <= N <= 99)
   // Check if input has data-number and data-required attributes and if the value is empty
   if (
     input.dataset.number !== undefined &&
@@ -205,6 +209,7 @@ function validateInput(input) {
     error = formDataElement.dataset.error;
   }
 
+  // RADIO BUTTONS - REQUIRED 1 CHECKED
   // Check if input is radio
   if (input.type === "radio") {
     // Get all radio inputs in the group
@@ -228,6 +233,7 @@ function validateInput(input) {
     }
   }
 
+  // CHECKBOX TERMS AND CONDITIONS
   // Check if input is checkbox and if it has data-required attribute and if it is not checked
   if (
     input.type === "checkbox" &&
