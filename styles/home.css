@@ -1,9 +1,8 @@
 :root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: var(--font-default);
+  /* ====== ANIMATIONS ====== */
   --modal-duration: 0.8s;
 
-  /* Colors */
+  /* ==== COLORS ==== */
   --color-primary: #232323;
   --color-secondary: #fe142f;
   --color-tertiary: #279e7a;
@@ -16,16 +15,35 @@
 
   /* ====== TYPOGRAPHY ====== */
   --font-size-base: 1em;
+  --font-size-normal: 1rem;
+
+  /* ====== FONT-FAMILY ====== */
+  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+
+  /* ====== FONT WEIGHT ====== */
+  --font-weight-regular: 400;
+  --font-weight-bolder: bolder;
+
+  /* ====== SPACING ====== */
+  --space-base: 8px;
+  --space-mini: calc(var(--space-base) * 0.625);
+  /* 5px */
+  --space-XS: calc(var(--space-base) * 2);
+  /* 16px */
+  --space-S: calc(var(--space-base) * 3);
+  /* 24px */
+  --space-M: calc(var(--space-base) * 4);
+  /* 32px */
+  --space-L: calc(var(--space-base) * 5);
+  /* 40px */
+  --space-XL: calc(var(--space-base) * 6);
+  /* 48px */
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html {
-  font-size: 1em;
 }
 
 html,
@@ -44,16 +62,15 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-family: var(--font-default);
-  font-size: 18px;
+  font-size: calc(var(--font-size-normal) * 1.125);
   max-width: 1500px;
   margin: 0 auto;
 }
 
 .topNav {
-  margin-block: 48px;
-  margin-block-end: 80px;
-  margin-inline: 24px;
+  margin-block: var(--space-XL);
+  margin-block-end: calc(var(--space-L) * 2);
+  margin-inline: var(--space-S);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,10 +81,10 @@ body {
   display: block;
   color: #000000;
   text-align: center;
-  padding: 8px 12px;
-  margin: 5px;
+  padding: var(--space-base) calc(var(--space-base) * 1.5);
+  margin: var(--space-mini);
   text-decoration: none;
-  font-size: 20px;
+  font-size: calc(var(--font-size-normal) * 1.25);
   font-family: Roboto, sans-serif;
 }
 
@@ -96,9 +113,9 @@ body {
 /* ================= */
 
 main {
-  font-weight: bolder;
+  font-weight: var(--font-weight-bolder);
   color: black;
-  margin-inline: 24px;
+  margin-inline: var(--space-S);
   border-radius: 2rem;
   text-align: justify;
 }
@@ -111,7 +128,7 @@ main {
 }
 
 .hero-content {
-  padding: 51px 60px;
+  padding: calc(var(--space-base) * 6.4) calc(var(--space-L) * 1.5);
   grid-column: 1 / span 5;
   background: #232323;
   color: #fff;
@@ -124,26 +141,27 @@ main {
 }
 
 .hero-headline {
-  font-size: 6rem;
-  font-weight: normal;
+  font-size: calc(var(--font-size-normal) * 6);
+  ;
+  font-weight: 400;
   white-space: nowrap;
 }
 
 .hero-text {
-  font-weight: normal;
-  margin-top: 57px;
-  margin-inline-end: -28px;
+  font-weight: var(--font-weight-regular);
+  margin-top: calc(var(--space-base) * 7.1);
+  margin-inline-end: calc(var(--space-base) * -3.5);
   padding: 0;
-  font-size: 1.5rem;
+  font-size: calc(var(--font-size-normal) * 1.5);
 }
 
 .btn-signup {
   outline: none;
   text-transform: capitalize;
-  font-size: 1.5rem;
-  padding: 15px 23px;
+  font-size: calc(var(--font-size-normal) * 1.5);
+  padding: var(--space-XS) var(--space-S);
   margin: 0;
-  margin-top: 59px;
+  margin-top: calc(var(--space-base) * 7.4);
   background: #fe142f;
   border-radius: 7px;
   color: #fff;
@@ -176,16 +194,15 @@ main {
 /* =================== */
 
 footer {
-  margin-inline: 24px;
-  padding-block-start: 80px;
-  padding-block-end: 60px;
-  font-family: var(--font-slab);
+  margin-inline: var(--space-S);
+  padding-block-start: calc(var(--space-L) * 2);
+  padding-block-end: calc(var(--space-L) * 1.5);
 }
 
 .copyrights {
   color: #fe142f;
-  font-size: 1rem;
-  font-weight: bolder;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-bolder);
 }
 
 /* =========================================== */
@@ -194,32 +211,34 @@ footer {
 
 @media screen and (max-width: 1250px) {
   .topNav {
-    margin-block-end: 68px;
+    margin-block-end: calc(var(--space-base) * 8.5);
+    /* 68px */
   }
 
   .topNav a {
-    font-size: 0.95rem;
-    margin: 2px;
+    font-size: calc(var(--font-size-normal) * 0.95);
+    margin: calc(var(--space-base) * 0.25);
   }
 
   .hero-headline {
-    font-size: 4.3rem;
+    font-size: calc(var(--font-size-normal) * 4.3);
   }
 
   .hero-text,
   .btn-signup {
-    font-size: 1.4rem;
+    font-size: calc(var(--font-size-normal) * 1.4);
   }
 
   footer {
-    padding-block-start: 68px;
-    padding-block-end: 48px;
+    padding-block-start: calc(var(--space-base) * 8.5);
+    /* 68px */
+    padding-block-end: var(--space-XL);
   }
 }
 
 @media screen and (max-width: 1000px) {
   .topNav {
-    margin-block-end: 56px;
+    margin-block-end: calc(var(--space-base) * 7);
   }
 
   .header-logo img {
@@ -227,16 +246,16 @@ footer {
   }
 
   .hero-content {
-    padding: 39px 48px;
+    padding: var(--space-L) var(--space-XL);
   }
 
   .hero-headline {
-    font-size: 4rem;
+    font-size: calc(var(--font-size-normal) * 4);
   }
 
   .hero-text,
   .btn-signup {
-    font-size: 1.25rem;
+    font-size: calc(var(--font-size-normal) * 1.25);
   }
 }
 
@@ -247,22 +266,22 @@ footer {
 @media screen and (max-width: 900px) {
 
   .topNav {
-    margin-block-end: 0.4rem;
+    margin-block-end: calc(var(--space-base) * 0.75);
   }
 
   .topNav a {
     display: none;
-    margin: 12px;
-    margin-right: 24px;
+    margin: calc(var(--space-base) * 1.5);
+    margin-right: var(--space-S);
   }
 
   .topNav a.icon {
     float: right;
     display: block;
     color: #fe142f;
-    font-size: 2rem;
+    font-size: calc(var(--font-size-normal) * 2);
     /* align the burger horizontally with the logo */
-    margin-block-start: -8px;
+    margin-block-start: calc(var(--space-base) * -1);
     margin-inline-end: revert;
   }
 
@@ -296,7 +315,7 @@ footer {
 
   /* give larger space to the menu items */
   .header-navbar a:not(.icon) {
-    margin-right: 30px;
+    margin-right: calc(var(--space-M) * 0.94);
   }
 
   .hero-section {
@@ -317,11 +336,11 @@ footer {
 
   .hero-headline {
     white-space: normal;
-    font-size: 3.5rem;
+    font-size: calc(var(--font-size-normal) * 3.5);
   }
 
   .hero-text {
-    margin-block: 1.77rem;
+    margin-block: calc(var(--space-XS) * 1.77);
     margin-inline-end: revert;
   }
 
@@ -333,12 +352,12 @@ footer {
 
   .hero-section>.btn-signup {
     display: block;
-    margin: 42px auto 10px;
-    padding: 12px 35px;
+    margin: var(--space-L) auto calc(var(--space-base) * 1.5);
+    padding: calc(var(--space-base) * 1.5) calc(var(--space-M) * 1.1);
   }
 
   footer {
-    padding-block-start: 40px;
+    padding-block-start: var(--space-L);
   }
 
   .copyrights {
@@ -352,12 +371,12 @@ footer {
 
 @media screen and (max-width: 540px) {
   .topNav {
-    margin-block-start: 2rem;
+    margin-block-start: var(--space-M);
     margin-block-end: 0;
   }
 
   .topNav a.icon {
-    font-size: 1.6rem;
+    font-size: calc(var(--font-size-normal) * 1.6);
   }
 
   .header-logo {
@@ -369,7 +388,7 @@ footer {
   }
 
   .header-navbar a {
-    font-size: 0.9rem;
+    font-size: calc(var(--font-size-normal) * 0.9);
   }
 
   /* to give larger space to the menu items */
@@ -378,13 +397,13 @@ footer {
   }
 
   .hero-headline {
-    font-size: 2.4rem;
+    font-size: calc(var(--font-size-normal) * 2.4);
   }
 
   .hero-text,
   .btn-signup {
-    font-size: 0.9rem;
-    margin-block: 1.5rem
+    font-size: calc(var(--font-size-normal) * 0.9);
+    margin-block: var(--space-S);
   }
 
   .hero-img img {
@@ -392,14 +411,14 @@ footer {
   }
 
   .hero-section>.btn-signup {
-    margin: 24px auto 0;
+    margin: var(--space-S) auto 0;
   }
 
   footer {
-    padding-block: 24px;
+    padding-block: var(--space-S);
   }
 
   .copyrights {
-    font-size: 0.6rem;
+    font-size: calc(var(--font-size-normal) * 0.6);
   }
 }
