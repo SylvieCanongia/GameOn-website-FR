@@ -200,7 +200,7 @@ function validateInput(input) {
   if (
     input.dataset.number !== undefined &&
     input.dataset.required !== undefined &&
-    value === ""
+    value === "" || value < 0 || value > 99
   ) {
     formDataElement.setAttribute(
       "data-error",
