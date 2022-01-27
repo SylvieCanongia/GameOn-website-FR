@@ -163,7 +163,7 @@ function validateInput(input) {
   /**
    * Check if age > 18
    * @param {Date} dateOfBirth 
-   * @returns Function
+   * @returns Age
    */
   function validateAge(dateOfBirth) {
     // [1] new Date(dateString)
@@ -192,6 +192,7 @@ function validateInput(input) {
       let age;
       return (age = Math.abs(yearOfBirth - 1970));
     }
+    console.log(calculateAge(birthday))
     return calculateAge(birthday);
   }
 
